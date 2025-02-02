@@ -19,6 +19,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+@livewireStyles
 </head>
 <body>
     <div id="app">
@@ -80,5 +81,21 @@
             @yield('content')
         </main>
     </div>
+    @livewireScripts
+    <script>
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('showEditModal', () => {
+                var myModal = new bootstrap.Modal(document.getElementById('editModal'));
+                myModal.show();
+            });
+    
+            Livewire.on('hideEditModal', () => {
+                var myModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                if (myModal) {
+                    myModal.hide();
+                }
+            });
+        });
+    </script>    
 </body>
 </html>

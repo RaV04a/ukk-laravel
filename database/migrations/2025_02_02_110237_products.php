@@ -15,12 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_produk');
             $table->float('harga');
+            $table->timestamps(); // Adds created_at and updated_at columns
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('products');
