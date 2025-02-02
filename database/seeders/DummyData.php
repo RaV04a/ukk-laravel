@@ -11,8 +11,8 @@ class DummyData extends Seeder
     public function run(): void
     {
         $user = new user();
-        $user->name = 'Erlang';
-        $user->username = 'erlangftsiesta';
+        $user->name = 'Wysis';
+        $user->username = 'wysisftmita';
         $user->password = bcrypt('123');
         $user->peran = 'kasir';
         $user->save();
