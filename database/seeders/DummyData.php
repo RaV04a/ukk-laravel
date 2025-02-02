@@ -10,11 +10,11 @@ class DummyData extends Seeder
 {
     public function run(): void
     {
-        $user = new user();
-        $user->name = 'Erlang';
-        $user->username = 'erl';
-        $user->password = bcrypt('123');
-        $user->peran = 'kasir';
+        $user = new User();
+        $user->name = env('USER_NAME'); // Default value if env is not set
+        $user->username = env('USER_USERNAME');
+        $user->password = bcrypt(env('USER_PASSWORD'));
+        $user->peran = env('USER_PERAN');
         $user->save();
     }
 }
