@@ -16,6 +16,7 @@
         <div class="card border-primary">
             <div class="card-body">
                 <h4 class="card-title">No Invoice : </h4>
+                <input type="text" class="form-control" placeholder="No Invoice" wire:model.live="kode">
                 <table class="table table-bordered">
                     <thead>
                         <th>No</th>
@@ -27,7 +28,17 @@
                         <th>Aksi</th>
                     </thead>
                     <tbody>
-
+                        @foreach ($semuaProduk as $produk)
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$produk->kode}}</td>
+                                <td>{{$produk->nama}}</td>
+                                <td>{{number_format($produk->harga,2,'.',',')}}</td>
+                                <td>{{$produk->jumlah}}</td>
+                                <td>{{number_format($produk->harga * $jumlah[$produk->id], 2,'.',',')}}</td>
+                                <td><button class="btn btn-danger" wire:click='hapusProduk({{$produk->id}})'>Hapus</button></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\DetailTransaksi;
 use Livewire\Component;
 use app\Models\Transaksi as ModelsTransaksi;
+use app\Models\Produk;
 
 class Transaksi extends Component
 {
@@ -44,6 +45,8 @@ class Transaksi extends Component
     {
         if ($this->transaksiAktif) {
             $semuaProduk = DetailTransaksi::where('transaksi_id', $this->transaksiAktif->id)->get();
+        } else {
+            $semuaProduk = [];
         }
         return view('livewire.transaksi')->with([
             'semuaProduk' => $semuaProduk
