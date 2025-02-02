@@ -2,12 +2,51 @@
 
 namespace App\Livewire;
 
+use App\Models\DetailTransaksi;
 use Livewire\Component;
+use app\Models\Transaksi as ModelsTransaksi;
 
 class Transaksi extends Component
 {
+    public $kode, $total, $bayar, $kembalian, $totalSemuaBelanja;
+    public $transaksiAktif;
+
+    public function transaksiBaru(){
+        $this->reset();
+        $this->transaksiAktif = new ModelsTransaksi();
+        $this->transaksiAktif->kode = 'INV/' . date('YmdHis');
+        $this->transaksiAktif->total = 0;
+        $this->transaksiAktif->status = 'pending';
+        $this->transaksiAktif->save();
+    }
+
+    public function batalTransaksi(){
+        if ($this->transaksiAktif()){
+            $this->transaksiAktif->delete();
+        }
+        $this->reset();
+    }
+    public function updatedKode(){
+        $produk = Produk::where('kode', $this->kode)->first();
+        if ($produk && $produk->stok > 0) {
+            $detail= DetailTransaksi::firstOrNew([
+                'transaksi_id' => $this->transaksiAktif->id,
+                'produk_id' => $produk->id
+            ],[
+                'jumlah' => 0
+            ]);
+            $detail->jumlah += 1;
+            $detail->save();
+            $this->reset();
+        }
+    }
     public function render()
     {
-        return view('livewire.transaksi');
+        if ($this->transaksiAktif) {
+            $semuaProduk = DetailTransaksi::where('transaksi_id', $this->transaksiAktif->id)->get();
+        }
+        return view('livewire.transaksi')->with([
+            'semuaProduk' => $semuaProduk
+        ]);
     }
 }
