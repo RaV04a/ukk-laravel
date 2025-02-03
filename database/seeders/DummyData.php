@@ -16,5 +16,7 @@ class DummyData extends Seeder
         $user->password = bcrypt(env('USER_PASSWORD'));
         $user->peran = env('USER_PERAN');
         $user->save();
+
+        //ini kontol rangga
     }
 }
