@@ -33,9 +33,9 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$produk->kode}}</td>
                                 <td>{{$produk->nama}}</td>
-                                <td>{{number_format($produk->harga,2,'.',',')}}</td>
+                                <td>{{number_format($produk->produk->harga,2,'.',',')}}</td>
                                 <td>{{$produk->jumlah}}</td>
-                                <td>{{number_format($produk->harga * $jumlah[$produk->id], 2,'.',',')}}</td>
+                                <td>{{number_format($produk->produk->harga * $produk->id, 2,'.',',')}}</td>
                                 <td><button class="btn btn-danger" wire:click='hapusProduk({{$produk->id}})'>Hapus</button></td>
                             </tr>
                         @endforeach
