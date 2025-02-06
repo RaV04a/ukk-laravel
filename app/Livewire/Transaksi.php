@@ -5,7 +5,7 @@ namespace App\Livewire;
 use App\Models\DetailTransaksi;
 use Livewire\Component;
 use App\Models\Transaksi as ModelsTransaksi;
-use App\Models\Produk;
+use App\Models\Products;
 
 class Transaksi extends Component
 {
@@ -28,7 +28,7 @@ class Transaksi extends Component
         $this->reset();
     }
     public function updatedKode(){
-        $produk = Produk::where('kode', $this->kode)->first();
+        $produk = Products::where('kode', $this->kode)->first();
         if ($produk && $produk->stok > 0) {
             $detail= DetailTransaksi::firstOrNew([
                 'transaksi_id' => $this->transaksiAktif->id,
