@@ -4,8 +4,8 @@ namespace App\Livewire;
 
 use App\Models\DetailTransaksi;
 use Livewire\Component;
-use app\Models\Transaksi as ModelsTransaksi;
-use app\Models\Produk;
+use App\Models\Transaksi as ModelsTransaksi;
+use App\Models\Produk;
 
 class Transaksi extends Component
 {
@@ -45,6 +45,9 @@ class Transaksi extends Component
     {
         if ($this->transaksiAktif) {
             $semuaProduk = DetailTransaksi::where('transaksi_id', $this->transaksiAktif->id)->get();
+            $this->$totalSemuaBelanja = $semuaProduk->sum(function ($detail) {
+                return $detail->produk->harga * $detail->jumlah;
+            });
         } else {
             $semuaProduk = [];
         }

@@ -1,13 +1,21 @@
-<div>
-    <h1>Products</h1>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Products</h1>
 
-    <form wire:submit.prevent="store">
-        <input type="text" wire:model="nama_produk" placeholder="Nama Produk">
-        <input type="number" wire:model="harga" placeholder="Harga">
-        <button type="submit">Add Product</button>
+    <form wire:submit.prevent="store" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" wire:model="nama_produk" class="form-control" placeholder="Nama Produk" required>
+            </div>
+            <div class="col-md-4">
+                <input type="number" wire:model="harga" class="form-control" placeholder="Harga" required>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </div>
+        </div>
     </form>
 
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Nama Produk</th>
@@ -19,11 +27,10 @@
             @foreach($products as $product)
             <tr>
                 <td>{{ $product->nama_produk }}</td>
-                <td>{{ $product->harga }}</td>
+                <td>{{ number_format($product->harga, 2, ',', '.') }}</td>
                 <td>
-                    <button wire:click.prevent="edit({{ $product->id }})">Edit</button>
-
-                    <button wire:click="destroy({{ $product->id }})">Delete</button>
+                    <button wire:click.prevent="edit({{ $product->id }})" class="btn btn-warning btn-sm">Edit</button>
+                    <button wire:click="destroy({{ $product->id }})" class="btn btn-danger btn-sm">Delete</button>
                 </td>
             </tr>
             @endforeach
@@ -40,15 +47,20 @@
                 </div>
                 <div class="modal-body">
                     <form wire:submit.prevent="update">
-                        <input type="text" wire:model.defer="nama_produk" placeholder="Nama Produk">
-                        <input type="number" wire:model.defer="harga" placeholder="Harga">
-                        <button type="submit">Update Product</button>
+                        <div class="mb-3">
+                            <input type="text" wire:model.defer="nama_produk" class="form-control" placeholder="Nama Produk" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" wire:model.defer="harga" class="form-control" placeholder="Harga" required>
+                        </div>
+                        <button type="submit" class="btn btn-success">Update Product</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         window.addEventListener('showEditModal', () => {
