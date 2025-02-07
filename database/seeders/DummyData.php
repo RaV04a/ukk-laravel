@@ -17,6 +17,6 @@ class DummyData extends Seeder
         $user->peran = env('USER_PERAN');
         $user->save();
 
-        //ini kontol rangga
+
     }
 }

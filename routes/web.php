@@ -19,3 +19,4 @@ Route::get('/produk', Produk::Class)->middleware(['auth'])->name('produk');
 Route::get('/transaksi', Transaksi::Class)->middleware(['auth'])->name('transaksi');
 Route::get('/laporan', Laporan::Class)->middleware(['auth'])->name('laporan');
 Route::get('/cetak', ['App\Http\Controllers\HomeController', 'cetak']);
+Route::get('/tambah', ['App\Http\Controllers\HomeController', 'tambah']);

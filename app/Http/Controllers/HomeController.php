@@ -32,4 +32,7 @@ class HomeController extends Controller
             'semuaTransaksi' => $semuaTransaksi
          ]);
     }
+    public function tambah(){
+        return view('livewire.user.tambah');
+    }
 }
