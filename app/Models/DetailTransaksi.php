@@ -14,7 +14,7 @@ class DetailTransaksi extends Model
         return $this->belongsTo(Transaksi::class);
     
     }
-    // public function produk(){
-    //     return $this->belongsTo(Produk::class);
-    // }
+    public function produk(){
+        return $this->belongsTo(Produk::class);
+    }
 }
