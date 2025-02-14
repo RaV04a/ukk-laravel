@@ -26,6 +26,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function tambah()
+    {
+        return view('livewire.user.tambah');
+    }
     // public function cetak(){
     //     $semuaTransaksi = Transaksi::where('status', 'selesai')->get();
     //     return view('cetak')->with([
