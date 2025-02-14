@@ -3,9 +3,9 @@
         <div class="col-12">
             <div class="card border-primary">
                 <div class="card-body">
-                    <h4 class="card-tittle">User</h4>
+                    <h4 class="card-tittle">Daftar Pengguna</h4>
                         <!-- Button trigger modal -->
-                        <a href="{{ url('/tambah') }}" class="btn btn-primary">
+                        <a href="{{ url('/tambah') }}" class="btn btn-primary mb-3">
                             <i class="bx bx-plus"></i> Tambah Kasir
                         </a>
                     <table class="table table-bordered">
